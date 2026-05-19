@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import { getLastCommitDate } from '../../lib/github';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: project,
+	}));
+}
+
+const project = Astro.props;
+const { Content } = await render(project);
+
+let lastCommitDate = null;
+if (project.data.githubRepo) {
+	lastCommitDate = await getLastCommitDate(project.data.githubRepo);
+}
+---
+
+<ProjectLayout {...project.data} lastCommitDate={lastCommitDate}>
+	<Content />
+</ProjectLayout>
