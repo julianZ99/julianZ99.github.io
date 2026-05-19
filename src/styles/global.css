@@ -40,6 +40,9 @@ body {
   color: var(--color-fg);
   font-size: 20px;
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 /* ===== Header tabs ===== */
@@ -75,11 +78,15 @@ header {
 }
 
 @media (min-width: 768px) {
+  header {
+    margin-top: 3em;
+  }
   .internal-links {
     width: 720px;
     max-width: calc(100% - 2em);
     border-left: 1px solid var(--color-fg);
     border-right: 1px solid var(--color-fg);
+    border-top: 1px solid var(--color-fg);
   }
   .internal-links a {
     border-bottom: none;
@@ -89,10 +96,24 @@ header {
 /* ===== Main content ===== */
 main {
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
   padding: 3em 1em;
   box-sizing: border-box;
   background-color: var(--color-bg);
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-color: var(--color-fg) transparent;
+  scrollbar-width: auto;
+}
+main::-webkit-scrollbar {
+  width: 16px;
+}
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+main::-webkit-scrollbar-thumb {
+  background: var(--color-fg);
+  border-radius: 0;
 }
 
 @media (min-width: 768px) {
@@ -177,7 +198,7 @@ hr {
 
 /* ===== Footer ===== */
 footer {
-  padding: 2em 1em 6em 1em;
+  padding: 2em 1em 2em 1em;
   background: none;
   color: var(--color-fg);
   text-align: center;
