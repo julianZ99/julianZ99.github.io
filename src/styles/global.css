@@ -1,19 +1,8 @@
-@import "tailwindcss";
-
-@theme {
-  --color-accent: #4ee14a;
-  --color-bg: #0f150d;
-  --color-fg: #dde5d5;
-}
-
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
-
-/* Material Design 3 - Dark Theme (terminal palette) */
+/* Dark Theme (terminal palette) */
 :root {
+  --color-accent: #4ee14a;
+  --color-bg: #0e150c;
+  --color-fg: #dde5d5;
   --box-shadow:
     0 2px 6px rgba(0, 0, 0, 40%),
     0 8px 24px rgba(0, 0, 0, 50%),
@@ -40,11 +29,6 @@
   color: #dde5d7;
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 body {
   font-family: 'Terminess Mono', monospace;
   margin: 0;
@@ -57,18 +41,70 @@ body {
   font-size: 20px;
   line-height: 1.7;
 }
+
+/* ===== Header tabs ===== */
+header {
+  margin: 0;
+}
+
+.internal-links {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  background: var(--color-bg);
+  box-sizing: border-box;
+}
+
+.internal-links a {
+  flex: 1;
+  text-align: center;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-fg);
+  border-right: 1px solid var(--color-fg);
+}
+
+.internal-links a:last-child {
+  border-right: none;
+}
+
+.internal-links a.active {
+  font-weight: bolder;
+  color: var(--color-bg);
+  background: var(--color-fg);
+}
+
+@media (min-width: 768px) {
+  .internal-links {
+    width: 720px;
+    max-width: calc(100% - 2em);
+    border-left: 1px solid var(--color-fg);
+    border-right: 1px solid var(--color-fg);
+  }
+  .internal-links a {
+    border-bottom: none;
+  }
+}
+
+/* ===== Main content ===== */
 main {
-  width: 720px;
-  max-width: calc(100% - 2em);
+  width: 100%;
   margin: auto;
   padding: 3em 1em;
+  box-sizing: border-box;
+  background-color: var(--color-bg);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+@media (min-width: 768px) {
+  main {
+    width: 720px;
+    max-width: calc(100% - 2em);
+    border: 1px solid var(--color-fg);
+  }
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5rem 0;
   color: var(--color-fg);
   line-height: 1.2;
@@ -79,51 +115,53 @@ h3 { font-size: 1.953em; }
 h4 { font-size: 1.563em; }
 h5 { font-size: 1.25em; }
 
-strong,
-b {
+strong, b {
   font-weight: 700;
 }
+
 a {
-  color: var(--color-accent);
+  color: var(--color-fg);
 }
-a:hover {
-  color: var(--color-accent);
-}
+
 p {
   margin-bottom: 1em;
 }
+
 .prose p {
   margin-bottom: 2em;
 }
-textarea {
-  width: 100%;
+
+textarea, input {
   font-size: 16px;
 }
-input {
-  font-size: 16px;
-}
+
 table {
   width: 100%;
 }
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
+
 code {
   padding: 2px 5px;
   background-color: color-mix(in srgb, var(--color-fg) 10%, var(--color-bg));
   color: var(--color-accent);
   border-radius: 2px;
 }
+
 pre {
   padding: 1.5em;
   border-radius: 8px;
   background-color: #151c13;
 }
+
 pre > code {
   all: unset;
 }
+
 blockquote {
   border-left: 4px solid var(--color-accent);
   padding: 0 0 0 20px;
@@ -131,11 +169,74 @@ blockquote {
   font-size: 1.333em;
   color: var(--color-fg);
 }
+
 hr {
   border: none;
   border-top: 1px solid color-mix(in srgb, var(--color-fg) 15%, var(--color-bg));
 }
-@media (max-width: 720px) {
+
+/* ===== Footer ===== */
+footer {
+  padding: 2em 1em 6em 1em;
+  background: none;
+  color: var(--color-fg);
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.social-links a {
+  text-decoration: none;
+  color: var(--color-fg);
+}
+
+/* ===== Blog post layout ===== */
+.hero-image {
+  width: 100%;
+}
+
+.hero-image img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+}
+
+.prose {
+  width: 720px;
+  max-width: calc(100% - 2em);
+  margin: auto;
+  padding: 1em;
+  color: var(--color-fg);
+}
+
+.prose .title {
+  margin-bottom: 1em;
+  padding: 1em 0;
+  text-align: center;
+  line-height: 1;
+}
+
+.prose .title h1 {
+  margin: 0 0 0.5em 0;
+}
+
+.prose .date {
+  margin-bottom: 0.5em;
+  color: var(--color-fg);
+}
+
+.prose .last-updated-on {
+  font-style: italic;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 767px) {
   body {
     font-size: 18px;
   }
@@ -143,6 +244,8 @@ hr {
     padding: 1em;
   }
 }
+
+/* ===== Utilities ===== */
 .sr-only {
   border: 0;
   padding: 0;
