@@ -2,6 +2,7 @@
 title: 'Second Project'
 description: 'Another interesting project'
 pubDate: 'Mar 22 2025'
+updatedDate: 'Apr 10 2025'
 githubRepo: 'anomalyco/opencode'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 ---

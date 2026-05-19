@@ -2,6 +2,7 @@
 title: 'First Project'
 description: 'A cool project built with Astro'
 pubDate: 'Jan 15 2025'
+updatedDate: 'Mar 01 2025'
 githubRepo: 'withastro/astro'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 ---
