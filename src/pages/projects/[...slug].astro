@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import fallbackImage from '../../assets/blog-placeholder-1.jpg';
 import { getLastCommitDate } from '../../lib/github';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 
@@ -20,6 +21,6 @@ if (project.data.githubRepo) {
 }
 ---
 
-<ProjectLayout {...project.data} lastCommitDate={lastCommitDate}>
+<ProjectLayout {...project.data} heroImage={project.data.heroImage ?? fallbackImage.src} lastCommitDate={lastCommitDate} showGoBack={true}>
 	<Content />
 </ProjectLayout>

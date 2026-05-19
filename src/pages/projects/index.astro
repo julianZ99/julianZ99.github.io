@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import fallbackImage from '../../assets/blog-placeholder-1.jpg';
 import BackgroundAnimation from '../../components/BackgroundAnimation.astro';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
@@ -29,9 +29,7 @@ const projects = (await getCollection('projects')).sort(
 						projects.map((project) => (
 							<li>
 								<a href={`/projects/${project.id}/`}>
-									{project.data.heroImage && (
-										<Image width={360} height={180} src={project.data.heroImage} alt="" />
-									)}
+									<img width={360} height={180} src={project.data.heroImage ?? fallbackImage.src} alt="" onerror={`this.src='${fallbackImage.src}'`} />
 									<div class="info">
 										<h4 class="title">{project.data.title}</h4>
 										<div class="dates">
