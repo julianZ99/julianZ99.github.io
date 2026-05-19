@@ -21,6 +21,31 @@ const { title, description, pubDate, heroImage, lastCommitDate } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
+		<style>
+			.prose .title {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				gap: 2rem;
+				text-align: left;
+				padding: 0 0 1em 0;
+			}
+			.prose .title h1 {
+				margin: 0;
+				flex: 1;
+				line-height: 1;
+			}
+			.prose .title .date {
+				text-align: right;
+				flex-shrink: 0;
+			}
+			article > hr {
+				margin-left: -1em;
+				width: calc(100% + 2em);
+				border: none;
+				border-top: 1px solid var(--color-fg);
+			}
+		</style>
 	</head>
 
 	<body>
@@ -33,19 +58,21 @@ const { title, description, pubDate, heroImage, lastCommitDate } = Astro.props;
 				</div>
 				<div class="prose">
 					<div class="title">
+						<h1>{title}</h1>
 						<div class="date">
 							Published <FormattedDate date={pubDate} />
 							{
 								lastCommitDate && (
-									<div class="last-updated-on">
-										Last updated <FormattedDate date={lastCommitDate} />
+									<div>
+										Last commit <FormattedDate date={lastCommitDate} />
 									</div>
 								)
 							}
 						</div>
-						<h1>{title}</h1>
-						<hr />
 					</div>
+				</div>
+				<hr />
+				<div class="prose">
 					<slot />
 				</div>
 			</article>

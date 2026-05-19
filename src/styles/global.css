@@ -39,7 +39,7 @@ body {
   overflow-wrap: break-word;
   color: var(--color-fg);
   font-size: 20px;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 /* ===== Header tabs ===== */
@@ -231,9 +231,7 @@ footer {
   color: var(--color-fg);
 }
 
-.prose .last-updated-on {
-  font-style: italic;
-}
+
 
 /* ===== Responsive ===== */
 @media (max-width: 767px) {
