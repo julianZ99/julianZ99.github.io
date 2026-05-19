@@ -13,10 +13,9 @@ interface Props {
 	githubRepo?: string;
 	heroImage?: any;
 	lastCommitDate?: Date | null;
-	showGoBack?: boolean;
 }
 
-const { title, description, pubDate, heroImage, lastCommitDate, showGoBack } = Astro.props;
+const { title, description, pubDate, heroImage, lastCommitDate, githubRepo } = Astro.props;
 ---
 
 <html lang="en">
@@ -30,26 +29,35 @@ const { title, description, pubDate, heroImage, lastCommitDate, showGoBack } = A
 		<Header />
 		<main>
 			<article>
-				{showGoBack && <a href="/projects/" class="go-back">Go Back</a>}
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" onerror={`this.src='${fallbackImage.src}'`} />}
-				</div><div class="prose">
+				{
+					heroImage && (
+						<div class="hero-image">
+							<img width={1020} height={510} src={heroImage} alt="" onerror={`this.src='${fallbackImage.src}'`} />
+						</div>
+					)
+				}
+				<div class="content">
 					<div class="title">
 						<h1>{title}</h1>
-						<div class="date">
-							Published <FormattedDate date={pubDate} />
+						<div class="meta">
 							{
-								lastCommitDate && (
-									<div>
-										Last commit <FormattedDate date={lastCommitDate} />
-									</div>
+								githubRepo && (
+									<a class="repo" href={`https://github.com/${githubRepo}`}>{githubRepo}</a>
 								)
 							}
+							<div class="date">
+								<div>Published <FormattedDate date={pubDate} /></div>
+								{
+									lastCommitDate && (
+										<div>Last commit <FormattedDate date={lastCommitDate} /></div>
+									)
+								}
+							</div>
 						</div>
 					</div>
 				</div>
 				<hr />
-				<div class="prose">
+				<div class="content">
 					<slot />
 				</div>
 			</article>

@@ -15,12 +15,12 @@ export async function getStaticPaths() {
 const project = Astro.props;
 const { Content } = await render(project);
 
-let lastCommitDate = null;
+let lastCommitDate = project.data.updatedDate ?? null;
 if (project.data.githubRepo) {
-	lastCommitDate = await getLastCommitDate(project.data.githubRepo);
+	lastCommitDate = await getLastCommitDate(project.data.githubRepo) ?? lastCommitDate;
 }
 ---
 
-<ProjectLayout {...project.data} heroImage={project.data.heroImage ?? fallbackImage.src} lastCommitDate={lastCommitDate} showGoBack={true}>
+<ProjectLayout {...project.data} heroImage={project.data.heroImage ?? fallbackImage.src} lastCommitDate={lastCommitDate}>
 	<Content />
 </ProjectLayout>
