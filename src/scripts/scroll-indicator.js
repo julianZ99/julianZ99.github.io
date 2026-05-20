@@ -1,22 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
+const initScrollIndicator = () => {
 	const main = document.querySelector('main');
 	if (!main) return;
-	const indicator = document.createElement('div');
-	indicator.className = 'scroll-indicator';
-	indicator.textContent = '';
-	indicator.tabIndex = 0;
-	indicator.setAttribute('role', 'button');
-	indicator.setAttribute('aria-label', 'Scroll down');
-	document.body.appendChild(indicator);
-	indicator.addEventListener('click', () => {
-		main.scrollBy({ top: main.clientHeight, left: 0, behavior: 'smooth' });
-	});
-	indicator.addEventListener('keydown', (event) => {
-		if (event.key === 'Enter' || event.key === ' ') {
-			event.preventDefault();
+	let indicator = document.querySelector('.scroll-indicator');
+	if (!indicator) {
+		indicator = document.createElement('div');
+		indicator.className = 'scroll-indicator';
+		indicator.textContent = '';
+		indicator.tabIndex = 0;
+		indicator.setAttribute('role', 'button');
+		indicator.setAttribute('aria-label', 'Scroll down');
+		document.body.appendChild(indicator);
+		indicator.addEventListener('click', () => {
 			main.scrollBy({ top: main.clientHeight, left: 0, behavior: 'smooth' });
-		}
-	});
+		});
+		indicator.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				main.scrollBy({ top: main.clientHeight, left: 0, behavior: 'smooth' });
+			}
+		});
+	}
 	const update = () => {
 		const rect = main.getBoundingClientRect();
 		const overflows = main.scrollHeight > main.clientHeight;
@@ -32,4 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	update();
 	main.addEventListener('scroll', update);
 	window.addEventListener('resize', update);
-});
+};
+
+document.addEventListener('astro:page-load', initScrollIndicator);
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', initScrollIndicator);
+} else {
+	initScrollIndicator();
+}
