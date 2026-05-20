@@ -41,7 +41,7 @@ const projects = (await getCollection('projects')).sort(
 										<p class="description">{project.data.description}</p>
 										<div class="meta">
 											{project.data.githubRepo && (
-												<span class="repo">{project.data.githubRepo}</span>
+												<span class="repo-label">{project.data.githubRepo}</span>
 											)}
 											<div class="dates">
 												<div class="date">
