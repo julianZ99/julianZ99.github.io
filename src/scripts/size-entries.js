@@ -7,12 +7,12 @@ function sizeEntries() {
 	const mainHeight = main.clientHeight;
 	const slotHeight = Math.floor((mainHeight - 4) / 5);
 
-	items.forEach((li) => {
+	for (const li of items) {
 		li.style.height = slotHeight + 'px';
-	});
+	}
 
 	const existing = ul.querySelectorAll('li.placeholder');
-	existing.forEach((e) => e.remove());
+	for (const e of existing) e.remove();
 
 	const remaining = 5 - items.length;
 	if (remaining > 0) {
