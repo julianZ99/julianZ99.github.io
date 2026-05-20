@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (!main) return;
 	const indicator = document.createElement('div');
 	indicator.className = 'scroll-indicator';
+	indicator.textContent = '';
 	document.body.appendChild(indicator);
 	const update = () => {
 		const rect = main.getBoundingClientRect();
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (overflows && !atBottom) {
 			indicator.style.display = 'block';
 			indicator.style.left = rect.right - 20 + 'px';
-			indicator.style.top = rect.bottom - 20 + 'px';
+			indicator.style.top = rect.bottom - 28 + 'px';
 		} else {
 			indicator.style.display = 'none';
 		}
