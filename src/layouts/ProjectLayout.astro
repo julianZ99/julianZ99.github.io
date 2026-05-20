@@ -1,4 +1,5 @@
 ---
+import { SITE_TITLE } from '../consts';
 import fallbackImage from '../assets/blog-placeholder-1.jpg';
 import BackgroundAnimation from '../components/BackgroundAnimation.astro';
 import BaseHead from '../components/BaseHead.astro';
@@ -16,11 +17,12 @@ interface Props {
 }
 
 const { title, description, pubDate, heroImage, lastCommitDate, githubRepo } = Astro.props;
+const tabTitle = `${SITE_TITLE} - ${title}`;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={tabTitle} description={description} />
 
 	</head>
 
