@@ -27,5 +27,9 @@ function sizeEntries() {
 	}
 }
 
-window.addEventListener('load', sizeEntries);
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', sizeEntries);
+} else {
+	sizeEntries();
+}
 window.addEventListener('resize', sizeEntries);
