@@ -29,18 +29,29 @@ const projects = (await getCollection('projects')).sort(
 						projects.map((project) => (
 							<li>
 								<a href={`/projects/${project.id}/`}>
-									<img width={360} height={180} src={project.data.heroImage ?? fallbackImage.src} alt="" onerror={`this.src='${fallbackImage.src}'`} />
+									<img
+										width={360}
+										height={180}
+										src={project.data.heroImage ?? fallbackImage.src}
+										alt=""
+										onerror={`this.src='${fallbackImage.src}'`}
+									/>
 									<div class="info">
 										<h4 class="title">{project.data.title}</h4>
-										<div class="dates">
-											<p class="date">
-												Published <FormattedDate date={project.data.pubDate} />
-											</p>
-											{project.data.updatedDate && (
-												<p class="date">
-													Last commit <FormattedDate date={project.data.updatedDate} />
-												</p>
+										<div class="meta">
+											{project.data.githubRepo && (
+												<span class="repo">{project.data.githubRepo}</span>
 											)}
+											<div class="dates">
+												<div class="date">
+													Published <FormattedDate date={project.data.pubDate} />
+												</div>
+												{project.data.updatedDate && (
+													<div class="date">
+														Last commit <FormattedDate date={project.data.updatedDate} />
+													</div>
+												)}
+											</div>
 										</div>
 									</div>
 								</a>
