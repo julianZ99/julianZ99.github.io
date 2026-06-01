@@ -20,6 +20,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 					<h1>julianZ99</h1>
 					<p class="description">
 						Personal projects and experiments.
+						<span class="wip-badge">WIP</span>
 					</p>
 				</div>
 			</div>
@@ -27,3 +28,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.wip-badge {
+		display: inline-block;
+		font-size: 0.6rem;
+		font-weight: 700;
+		color: var(--color-bg);
+		background: var(--color-accent);
+		padding: 0.15em 0.5em;
+		margin-left: 0.5em;
+		vertical-align: middle;
+		border-radius: 2px;
+		line-height: 1.4;
+	}
+</style>
