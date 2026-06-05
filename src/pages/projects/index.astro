@@ -32,7 +32,7 @@ const projects = (await getCollection('projects')).sort(
 								<li>
 									<a href={`/projects/${project.id}/`} class:list={{ 'no-icon': !icon }}>
 										{icon && (
-											<img width={360} height={180} src={icon} alt="" />
+											<img width={360} height={180} src={icon} alt="" onerror="this.style.display='none'" />
 										)}
 										<div class="info">
 											<h4 class="title">{project.data.title}</h4>

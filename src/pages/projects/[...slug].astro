@@ -22,6 +22,6 @@ if (project.data.githubRepo) {
 const heroImage = getProjectImage(project.data.githubRepo, 'banner');
 ---
 
-<ProjectLayout {...project.data} {heroImage} lastCommitDate={lastCommitDate}>
+<ProjectLayout {...project.data} {heroImage} lastCommitDate={lastCommitDate} hideTitle={true}>
 	<Content />
 </ProjectLayout>
