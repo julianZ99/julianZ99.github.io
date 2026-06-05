@@ -1,12 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
-import fallbackImage from '../../assets/blog-placeholder-1.jpg';
 import BackgroundAnimation from '../../components/BackgroundAnimation.astro';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { getProjectImage } from '../../lib/project-images';
 
 const projects = (await getCollection('projects')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -26,38 +26,37 @@ const projects = (await getCollection('projects')).sort(
 			<section>
 				<ul>
 					{
-						projects.map((project) => (
-							<li>
-								<a href={`/projects/${project.id}/`}>
-									<img
-										width={360}
-										height={180}
-										src={project.data.heroImage ?? fallbackImage.src}
-										alt=""
-										onerror={`this.src='${fallbackImage.src}'`}
-									/>
-									<div class="info">
-										<h4 class="title">{project.data.title}</h4>
-										<p class="description">{project.data.description}</p>
-										<div class="meta">
-											{project.data.githubRepo && (
-												<span class="repo-label">{project.data.githubRepo}</span>
-											)}
-											<div class="dates">
-												<div class="date">
-													Published <FormattedDate date={project.data.pubDate} />
-												</div>
-												{project.data.updatedDate && (
-													<div class="date">
-														Last commit <FormattedDate date={project.data.updatedDate} />
-													</div>
+						projects.map((project) => {
+							const icon = getProjectImage(project.data.githubRepo, 'icon');
+							return (
+								<li>
+									<a href={`/projects/${project.id}/`} class:list={{ 'no-icon': !icon }}>
+										{icon && (
+											<img width={360} height={180} src={icon} alt="" />
+										)}
+										<div class="info">
+											<h4 class="title">{project.data.title}</h4>
+											<p class="description">{project.data.description}</p>
+											<div class="meta">
+												{project.data.githubRepo && (
+													<span class="repo-label">{project.data.githubRepo}</span>
 												)}
+												<div class="dates">
+													<div class="date">
+														Published <FormattedDate date={project.data.pubDate} />
+													</div>
+													{project.data.updatedDate && (
+														<div class="date">
+															Last commit <FormattedDate date={project.data.updatedDate} />
+														</div>
+													)}
+												</div>
 											</div>
 										</div>
-									</div>
-								</a>
-							</li>
-						))
+									</a>
+								</li>
+							);
+						})
 					}
 				</ul>
 			</section>

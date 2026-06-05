@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
-import fallbackImage from '../../assets/blog-placeholder-1.jpg';
 import { getLastCommitDate } from '../../lib/github';
+import { getProjectImage } from '../../lib/project-images';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 
 export async function getStaticPaths() {
@@ -19,8 +19,9 @@ let lastCommitDate = project.data.updatedDate ?? null;
 if (project.data.githubRepo) {
 	lastCommitDate = await getLastCommitDate(project.data.githubRepo) ?? lastCommitDate;
 }
+const heroImage = getProjectImage(project.data.githubRepo, 'banner');
 ---
 
-<ProjectLayout {...project.data} heroImage={project.data.heroImage ?? fallbackImage.src} lastCommitDate={lastCommitDate}>
+<ProjectLayout {...project.data} {heroImage} lastCommitDate={lastCommitDate}>
 	<Content />
 </ProjectLayout>
