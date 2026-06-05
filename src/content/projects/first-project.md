@@ -11,9 +11,7 @@ This project automates the entire setup (Proton-GE patching, bmsound_wine, spice
 The script acts as an interactive TUI wizard with optional CLI flags.
 It also supports Asphyxia server configuration for online play.
 
-Credits:
-<ul style="list-style: none; padding: 0; margin: 0;">
-  <li>- <a href="https://github.com/nixac">nixac</a> — original guide, spicetools, bmsound_wine</li>
-  <li>- <a href="https://github.com/GloriousEggroll">GloriousEggroll</a> — Proton-GE</li>
-  <li>- <a href="https://asphyxia-core.github.io/">Asphyxia</a> — server emulator</li>
-</ul>
+#### Credits 
+- [nixac](https://github.com/nixac) — original guide, spicetools, bmsound_wine
+- [GloriousEggroll](https://github.com/GloriousEggroll) — Proton-GE
+- [Asphyxia](https://asphyxia-core.github.io/) — server emulator
