@@ -274,6 +274,40 @@ footer span {
   margin: 0;
 }
 
+/* Typewriter title effect (see src/scripts/typewriter.js).
+   Hidden until the script reveals it, but only when JS is present so the
+   title stays visible as a no-JS fallback. */
+html.js [data-typewriter] {
+  visibility: hidden;
+}
+
+.tw-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.05em;
+  margin-left: 0.12em;
+  background: var(--color-accent);
+  vertical-align: -0.12em;
+  animation: tw-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes tw-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-cursor {
+    animation: none;
+  }
+}
+
 .title .description {
   margin: 0;
   color: var(--color-fg);
