@@ -113,21 +113,43 @@ img {
   height: auto;
 }
 
+/* Syntax highlighting (Shiki "css-variables" theme) mapped to the site palette.
+   Undefined token vars fall back to the foreground color, so code stays mostly
+   monochrome-green with a few accents. */
+:root {
+  --astro-code-foreground: var(--color-fg);
+  --astro-code-background: #151c13;
+  --astro-code-token-comment: color-mix(in srgb, var(--color-fg) 45%, var(--color-bg));
+  --astro-code-token-punctuation: color-mix(in srgb, var(--color-fg) 70%, var(--color-bg));
+  --astro-code-token-keyword: var(--color-accent);
+  --astro-code-token-string: color-mix(in srgb, var(--color-accent) 65%, var(--color-fg));
+  --astro-code-token-string-expression: color-mix(in srgb, var(--color-accent) 65%, var(--color-fg));
+  --astro-code-token-link: var(--color-accent);
+  --astro-code-token-function: var(--color-fg);
+  --astro-code-token-constant: var(--color-fg);
+  --astro-code-token-parameter: var(--color-fg);
+}
+
 code {
+  font-family: var(--font-body);
   padding: 2px 5px;
   background-color: color-mix(in srgb, var(--color-fg) 10%, var(--color-bg));
   color: var(--color-accent);
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 pre {
-  padding: 1.5em;
-  border-radius: 8px;
-  background-color: #151c13;
+  font-family: var(--font-body);
+  padding: 1.25em 1.5em;
+  border-radius: 0;
+  border: none;
+  background-color: var(--astro-code-background);
+  overflow-x: auto;
 }
 
 pre>code {
   all: unset;
+  font-family: var(--font-body);
 }
 
 blockquote {
@@ -366,6 +388,39 @@ article>hr {
 .content ul {
   list-style-type: "- ";
   list-style-position: inside;
+}
+
+.content a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.content a:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.content blockquote {
+  font-size: 1.1em;
+}
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5em;
+}
+
+.content th,
+.content td {
+  border: 1px solid color-mix(in srgb, var(--color-fg) 20%, var(--color-bg));
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+
+.content th {
+  font-weight: 700;
+  background-color: color-mix(in srgb, var(--color-fg) 8%, var(--color-bg));
 }
 
 /* ===== Projects list ===== */
