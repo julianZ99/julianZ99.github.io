@@ -21,6 +21,20 @@
   font-display: swap;
 }
 
+/* Display / heading font (pixel) */
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('/assets/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-body: 'Terminess Mono', monospace;
+  --font-display: 'Press Start 2P', 'Terminess Mono', monospace;
+}
+
 ::selection {
   background-color: #3bb33c;
   color: #dde5d7;
@@ -51,27 +65,30 @@ h5,
 h6 {
   margin: 0;
   color: var(--color-fg);
-  line-height: 1.2;
+  /* Press Start 2P is a tall, chunky pixel font: it needs extra line-height
+     and a smaller scale than a regular display font. */
+  line-height: 1.5;
+  font-family: var(--font-display);
 }
 
 h1 {
-  font-size: 3.052em;
+  font-size: 1.9em;
 }
 
 h2 {
-  font-size: 2.441em;
+  font-size: 1.55em;
 }
 
 h3 {
-  font-size: 1.953em;
+  font-size: 1.3em;
 }
 
 h4 {
-  font-size: 1.563em;
+  font-size: 1.1em;
 }
 
 h5 {
-  font-size: 1.25em;
+  font-size: 0.95em;
 }
 
 strong,
@@ -225,13 +242,21 @@ footer span {
 }
 
 .hero-image {
-  padding: 1.5em 1.5em 0 1.5em;
+  padding: 0;
+  margin: 0;
+  /* kill any baseline/whitespace gap under the image */
+  line-height: 0;
+  font-size: 0;
 }
 
 .hero-image img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.hero-image + hr {
+  margin: 0;
 }
 
 .title {
@@ -241,7 +266,7 @@ footer span {
 }
 
 .content .title {
-  padding-top: 0;
+  padding-top: 1.25em;
   padding-bottom: 0.5em;
 }
 
@@ -267,6 +292,7 @@ footer span {
   align-self: end;
   color: var(--color-fg);
   font-size: inherit;
+  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -280,6 +306,7 @@ footer span {
   text-align: right;
   color: var(--color-fg);
   line-height: 1;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -339,7 +366,6 @@ section ul li a {
   display: grid;
   grid-template-columns: 180px 1fr;
   width: 100%;
-  height: 100%;
 }
 
 section ul li a img {
@@ -358,7 +384,6 @@ section ul .info {
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;
-  height: 100%;
   padding: 0 1em 0.35em;
   box-sizing: border-box;
 }
@@ -368,15 +393,15 @@ section ul .title {
   margin: 0;
   color: var(--color-fg);
   align-self: flex-start;
-  line-height: 1;
-  font-size: 2rem;
+  line-height: 1.4;
+  font-size: 1.15rem;
 }
 
 section ul .description {
   margin: 0;
   color: var(--color-fg);
-  font-size: 1rem;
-  line-height: 1;
+  font-size: 1.35rem;
+  line-height: 1.15;
 }
 
 section ul .meta {
@@ -389,8 +414,9 @@ section ul .meta {
 section ul .repo-label {
   margin: 0;
   color: var(--color-fg);
-  font-size: 1rem;
-  line-height: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: 700;
   white-space: nowrap;
   align-self: flex-end;
 }
@@ -404,7 +430,8 @@ section ul .dates {
 section ul .date {
   margin: 0;
   color: var(--color-fg);
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -497,7 +524,7 @@ section ul .placeholder .dots::after {
   }
 
   section ul .title {
-    font-size: 1.5rem;
+    font-size: 0.95rem;
   }
 
   section ul .description {

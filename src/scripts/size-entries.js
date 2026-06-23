@@ -8,7 +8,8 @@ function sizeEntries() {
 	const slotHeight = Math.floor((mainHeight - 4) / 5);
 
 	for (const li of items) {
-		li.style.height = slotHeight + 'px';
+		const a = li.querySelector('a');
+		if (a) a.style.minHeight = slotHeight + 'px';
 	}
 
 	const existing = ul.querySelectorAll('li.placeholder');

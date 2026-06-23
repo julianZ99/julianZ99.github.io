@@ -3,14 +3,14 @@ import rss from '@astrojs/rss';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 export async function GET(context) {
-	const projects = await getCollection('projects');
+	const posts = await getCollection('posts');
 	return rss({
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
 		site: context.site,
-		items: projects.map((project) => ({
-			...project.data,
-			link: `/projects/${project.id}/`,
+		items: posts.map((post) => ({
+			...post.data,
+			link: `/posts/${post.id}/`,
 		})),
 	});
 }

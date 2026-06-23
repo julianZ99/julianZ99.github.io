@@ -6,9 +6,8 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import { getProjectImage } from '../../lib/project-images';
 
-const projects = (await getCollection('projects')).sort(
+const posts = (await getCollection('posts')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -16,7 +15,7 @@ const projects = (await getCollection('projects')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`${SITE_TITLE} - Projects`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`${SITE_TITLE} - Posts`} description={SITE_DESCRIPTION} />
 		<script src="/src/scripts/size-entries.js" data-astro-rerun></script>
 	</head>
 	<body>
@@ -26,28 +25,28 @@ const projects = (await getCollection('projects')).sort(
 			<section>
 				<ul>
 					{
-						projects.map((project) => {
-							const icon = getProjectImage(project.data.githubRepo, 'icon');
+						posts.map((post) => {
+							const icon = post.data.icon;
 							return (
 								<li>
-									<a href={`/projects/${project.id}/`} class:list={{ 'no-icon': !icon }}>
+									<a href={`/posts/${post.id}/`} class:list={{ 'no-icon': !icon }}>
 										{icon && (
 											<img width={360} height={180} src={icon} alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-icon')" />
 										)}
 										<div class="info">
-											<h4 class="title">{project.data.title}</h4>
-											<p class="description">{project.data.description}</p>
+											<h4 class="title">{post.data.title}</h4>
+											<p class="description">{post.data.description}</p>
 											<div class="meta">
-												{project.data.githubRepo && (
-													<span class="repo-label">{project.data.githubRepo}</span>
+												{post.data.githubRepo && (
+													<span class="repo-label">{post.data.githubRepo}</span>
 												)}
 												<div class="dates">
 													<div class="date">
-														Published <FormattedDate date={project.data.pubDate} />
+														Published <FormattedDate date={post.data.pubDate} />
 													</div>
-													{project.data.updatedDate && (
+													{post.data.updatedDate && (
 														<div class="date">
-															Last commit <FormattedDate date={project.data.updatedDate} />
+															Last commit <FormattedDate date={post.data.updatedDate} />
 														</div>
 													)}
 												</div>
