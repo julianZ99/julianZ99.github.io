@@ -144,7 +144,8 @@ pre {
   border-radius: 0;
   border: none;
   background-color: var(--astro-code-background);
-  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 pre>code {
@@ -355,6 +356,7 @@ html.js [data-typewriter] {
 
 .meta .repo-link:hover {
   color: var(--color-accent);
+  background-color: transparent;
 }
 
 .meta .date {
@@ -421,6 +423,27 @@ article>hr {
 .content th {
   font-weight: 700;
   background-color: color-mix(in srgb, var(--color-fg) 8%, var(--color-bg));
+}
+
+pre code .comment {
+  color: color-mix(in srgb, var(--color-fg) 45%, var(--color-bg));
+}
+
+.contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contacts li {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 0.35em;
+}
+
+.contacts .label {
+  flex: 0 0 4.5em;
+  color: color-mix(in srgb, var(--color-fg) 55%, var(--color-bg));
 }
 
 /* ===== Projects list ===== */

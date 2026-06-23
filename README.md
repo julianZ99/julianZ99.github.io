@@ -1,7 +1,7 @@
-# julianZ99 — personal page
+# julianZ99 personal page
 
 My personal github site: a terminal-styled blog where each entry is a **post**. A post
-can be a write-up, a note, or a project — the layout adapts to whatever fields it
+can be a write-up, a note, or a project. The layout adapts to whatever fields it
 has, so nothing forces an entry to be a GitHub repo.
 
 Built with [Astro](https://astro.build/), statically generated and deployed to
@@ -9,10 +9,10 @@ GitHub Pages.
 
 ## Features
 
-- **Posts collection** — Markdown/MDX entries with a typed frontmatter schema.
-- **Flexible entries** — optional hero image, list icon and repo link; an entry
+- **Posts collection**: Markdown/MDX entries with a typed frontmatter schema.
+- **Flexible entries**: optional hero image, list icon and repo link; an entry
   with none of those is just a plain blog post.
-- **Terminal aesthetic** — green-on-black palette, self-hosted pixel fonts
+- **Terminal aesthetic**: green-on-black palette, self-hosted pixel fonts
   (Terminess Nerd Font for body, Press Start 2P for headings), animated background.
 - **RSS feed** at `/rss.xml` and an auto-generated sitemap.
 
@@ -39,7 +39,7 @@ icon: 'https://…/icon.png'          # small icon next to the entry in the list
 githubRepo: 'user/repository'       # repo link + last-commit date
 ```
 
-Images are never fetched automatically — if you don't set `heroImage` / `icon`,
+Images are never fetched automatically. If you don't set `heroImage` / `icon`,
 nothing is shown.
 
 The schema lives in [`src/content.config.ts`](src/content.config.ts).
