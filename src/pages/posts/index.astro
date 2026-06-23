@@ -16,7 +16,7 @@ const posts = (await getCollection('posts')).sort(
 <html lang="en">
 	<head>
 		<BaseHead title={`${SITE_TITLE} - Posts`} description={SITE_DESCRIPTION} />
-		<script src="/src/scripts/size-entries.js" data-astro-rerun></script>
+		<script src="/scripts/size-entries.js" data-astro-rerun is:inline></script>
 	</head>
 	<body>
 		<BackgroundAnimation />
