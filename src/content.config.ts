@@ -12,6 +12,7 @@ const posts = defineCollection({
 			heroImage: z.optional(z.string()),
 			icon: z.optional(z.string()),
 			githubRepo: z.optional(z.string()),
+			type: z.optional(z.string()),
 			updatedDate: z.optional(z.coerce.date()),
 		}),
 });

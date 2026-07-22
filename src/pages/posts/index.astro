@@ -6,9 +6,19 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { getLatestRelease } from '../../lib/github';
 
 const posts = (await getCollection('posts')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const entries = await Promise.all(
+	posts.map(async (post) => {
+		const isProject = Boolean(post.data.githubRepo);
+		const type = post.data.type ?? (isProject ? 'project' : 'blog');
+		const release = isProject ? await getLatestRelease(post.data.githubRepo) : null;
+		return { post, type, release };
+	}),
 );
 ---
 
@@ -25,7 +35,7 @@ const posts = (await getCollection('posts')).sort(
 			<section>
 				<ul>
 					{
-						posts.map((post) => {
+						entries.map(({ post, type, release }) => {
 							const icon = post.data.icon;
 							return (
 								<li>
@@ -34,7 +44,15 @@ const posts = (await getCollection('posts')).sort(
 											<img width={360} height={180} src={icon} alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-icon')" />
 										)}
 										<div class="info">
-											<h4 class="title">{post.data.title}</h4>
+											<div class="title-row">
+												<h4 class="title">{post.data.title}</h4>
+												<div class="badges">
+													<span class:list={['badge', `badge-${type}`]}>{type}</span>
+													{release && (
+														<span class="badge badge-release">{release}</span>
+													)}
+												</div>
+											</div>
 											<p class="description">{post.data.description}</p>
 											<div class="meta">
 												{post.data.githubRepo && (

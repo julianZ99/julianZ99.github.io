@@ -5,19 +5,25 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { getLatestRelease } from '../lib/github';
 
 interface Props {
 	title: string;
 	description: string;
 	pubDate: Date;
 	githubRepo?: string;
+	type?: string;
 	heroImage?: any;
 	lastCommitDate?: Date | null;
 	hideTitle?: boolean;
 }
 
-const { title, description, pubDate, heroImage, lastCommitDate, githubRepo, hideTitle } = Astro.props;
+const { title, description, pubDate, heroImage, lastCommitDate, githubRepo, type, hideTitle } = Astro.props;
 const tabTitle = `${SITE_TITLE} - ${title}`;
+
+const isProject = Boolean(githubRepo);
+const badgeType = type ?? (isProject ? 'project' : 'blog');
+const release = isProject ? await getLatestRelease(githubRepo) : null;
 ---
 
 <html lang="en">
@@ -43,7 +49,13 @@ const tabTitle = `${SITE_TITLE} - ${title}`;
 				}
 				<div class="content">
 					<div class="title">
-						{!hideTitle && <h1 data-typewriter>{title}</h1>}
+						<div class="title-row">
+							{!hideTitle && <h1 data-typewriter>{title}</h1>}
+							<div class="badges">
+								<span class:list={['badge', `badge-${badgeType}`]}>{badgeType}</span>
+								{release && <span class="badge badge-release">{release}</span>}
+							</div>
+						</div>
 						<p class="description">{description}</p>
 						<div class="meta">
 							{

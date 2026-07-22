@@ -10,3 +10,14 @@ export async function getLastCommitDate(repo) {
     return null;
   }
 }
+
+export async function getLatestRelease(repo) {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.tag_name ?? null;
+  } catch {
+    return null;
+  }
+}
