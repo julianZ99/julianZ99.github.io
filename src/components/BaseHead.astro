@@ -20,6 +20,53 @@ const { title, description, image = FallbackImage } = Astro.props;
 
 <script is:inline>document.documentElement.classList.add('js');</script>
 
+<script is:inline data-astro-rerun>
+  (function () {
+    var KEY = 'theme';
+    var root = document.documentElement;
+
+    function current() {
+      return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    }
+
+    function applyTheme(t) {
+      root.setAttribute('data-theme', t);
+      try {
+        localStorage.setItem(KEY, t);
+      } catch (e) {}
+    }
+
+    if (!root.hasAttribute('data-theme')) {
+      var t = 'dark';
+      try {
+        t =
+          localStorage.getItem(KEY) ||
+          (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      } catch (e) {}
+      applyTheme(t);
+    }
+
+    function syncLabel() {
+      var btn = document.querySelector('.theme-toggle');
+      if (!btn) return;
+      var next = current() === 'light' ? 'dark' : 'light';
+      btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      btn.setAttribute('title', 'Switch to ' + next + ' theme');
+    }
+
+    if (!window.__themeBound) {
+      window.__themeBound = true;
+      document.addEventListener('astro:page-load', syncLabel);
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest && e.target.closest('.theme-toggle');
+        if (!btn) return;
+        applyTheme(current() === 'light' ? 'dark' : 'light');
+        syncLabel();
+      });
+    }
+  })();
+</script>
+
 <ClientRouter />
 
 <!-- Global Metadata -->

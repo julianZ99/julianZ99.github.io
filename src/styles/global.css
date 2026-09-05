@@ -187,6 +187,45 @@ hr {
   font-weight: bolder;
 }
 
+/* Dark/light toggle, used in the footer. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-fg);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--color-accent);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+.theme-toggle svg {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+/* Show the icon of the theme the toggle would switch to. */
+:root[data-theme="dark"] .theme-toggle .icon-sun,
+:root:not([data-theme="light"]) .theme-toggle .icon-sun {
+  display: block;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
+}
+
 /* ===== Main ===== */
 main {
   width: 100%;
@@ -205,6 +244,10 @@ main::-webkit-scrollbar {
 
 /* ===== Footer ===== */
 footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
   padding: 2em 1em;
   color: var(--color-fg);
   text-align: center;
@@ -686,8 +729,10 @@ section ul {
     font-size: 16px;
   }
 
+  /* The footer is full width on mobile, separated from the content. */
   footer {
-    display: none;
+    padding: 1em;
+    border-top: 1px solid var(--color-fg);
   }
 
   .scroll-indicator {
@@ -733,4 +778,37 @@ section ul {
       align-items: flex-end;
     }
   }
+}
+
+/* ===== Light theme =====
+   Toggled via data-theme on <html>. The chrome (page background, header
+   strip and footer) stays on the dark palette; only the main content and the
+   header buttons switch to the light palette, at every viewport width. */
+:root[data-theme="light"] main,
+:root[data-theme="light"] .internal-links a {
+  --color-bg: #dde5d5;
+  --color-fg: #0e150c;
+  --color-accent: #1f7a1f;
+  --astro-code-background: #e6ece0;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+/* Match main's dark frame so header lines stay aligned with the content. */
+:root[data-theme="light"] .internal-links {
+  --color-fg: #0e150c;
+}
+
+/* The light palette rule above (0,3,1) would otherwise beat the base hover
+   rule (0,2,1), so restate the header button hover/active invert here. */
+:root[data-theme="light"] .internal-links a:hover,
+:root[data-theme="light"] .internal-links a.active {
+  color: var(--color-bg);
+  background: var(--color-fg);
+}
+
+/* The scroll indicator is a child of <body>, so it resolves the root palette
+   instead of main's scoped one; use the light foreground on light main. */
+:root[data-theme="light"] .scroll-indicator {
+  color: #0e150c;
 }
