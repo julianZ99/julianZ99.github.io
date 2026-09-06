@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/PostLayout.astro";
+import githubIcon from "pixelarticons/svg/github.svg?raw";
+import mailIcon from "pixelarticons/svg/mail.svg?raw";
 ---
 
 <Layout
@@ -8,29 +10,28 @@ import Layout from "../layouts/PostLayout.astro";
 	pubDate={new Date("June 22 2026")}
 >
 	<p>Hi, I'm Julian, a backend developer (most of the time).</p>
-
-	<p>I like to learn by taking things apart and putting them back together.</p>
-	<pre><code><span class="comment"># irrelevant facts about me</span>
-<strong>personal system:</strong>  Artix Linux (OpenRC), all in
-<strong>i build:</strong>          web apps, audio plugins, terminal tools
-<strong>i'm into:</strong>         music production, motorsports, rhythm games
+	<pre><code><span class="prompt">[julian@artixlinux </span>~<span class="prompt">]$</span> cat stack.txt
+- web apps:      astro, react, next.js, sveltekit
+- backend:       java, python, pytorch, postgresql, prisma
+- audio:         c++, juce, rust
+- desktop/mobile: electron, react native
+- infra/devops:  docker, nginx, aws, github actions
 	</code></pre>
-	<p>
-		This site is my logbook, so it contains my notes, experiments and
-		whatever I feel like writing down. Built with Astro, no heavy
-		frameworks, and a custom terminal look, just because I like it.
-	</p>
 
-	<h2 class="contact-heading">Contact</h2>
+	<div class="contact-section">
+	<h3 class="contact-heading">Contact</h3>
 
 	<ul class="contacts">
 		<li>
+			<span class="icon" set:html={githubIcon} />
 			<span class="label">github</span>
 			<a href="https://github.com/julianZ99">github.com/julianZ99</a>
 		</li>
 		<li>
+			<span class="icon" set:html={mailIcon} />
 			<span class="label">email</span>
 			<a href="mailto:julianZ99@proton.me">julianZ99@proton.me</a>
 		</li>
 	</ul>
+</div>
 </Layout>

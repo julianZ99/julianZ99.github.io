@@ -142,6 +142,11 @@ pre code .comment {
   color: color-mix(in srgb, var(--color-fg) 45%, var(--color-bg));
 }
 
+pre code .prompt {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
 blockquote {
   border-left: 4px solid var(--color-accent);
   padding: 0 0 0 20px;
@@ -253,7 +258,7 @@ footer {
   text-align: center;
 }
 
-footer span {
+footer > span {
   display: inline-block;
   background: var(--color-bg);
   padding: 0.25em 0.5em;
@@ -358,6 +363,20 @@ html.js [data-typewriter] {
   white-space: nowrap;
 }
 
+.meta .date .date-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4em;
+}
+
+.meta .date .date-icon svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  color: var(--color-fg);
+}
+
 /* Layout separators between article sections (solid, full width). */
 article>hr {
   border: none;
@@ -420,26 +439,49 @@ article>hr {
   background-color: color-mix(in srgb, var(--color-fg) 8%, var(--color-bg));
 }
 
-.contact-heading {
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1em;
   border-top: 1px solid var(--color-fg);
   margin: 1.5em -1em 0;
   padding: 0.75em 1em 0;
 }
 
+.contact-heading {
+  margin: 0;
+  padding: 0;
+}
+
 .contacts {
   list-style: none;
-  margin: 1.5em 0 0;
+  margin: 0;
   padding: 0;
 }
 
 .contacts li {
   display: flex;
-  gap: 0.6em;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4em;
   margin-bottom: 0.35em;
 }
 
 .contacts .label {
   flex: 0 0 auto;
+}
+
+.contacts .icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.contacts .icon svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+  color: var(--color-fg);
 }
 
 /* ===== Badges (shared by the projects list and the post headers) ===== */
