@@ -7,6 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { getLatestRelease } from '../lib/github';
 import calendarIcon from 'pixelarticons/svg/calendar.svg?raw';
+import githubIcon from 'pixelarticons/svg/github.svg?raw';
 
 interface Props {
 	title: string;
@@ -71,7 +72,10 @@ const release = isProject ? await getLatestRelease(githubRepo) : null;
 								</div>
 								{
 									lastCommitDate && (
-										<div>Last commit <FormattedDate date={lastCommitDate} /></div>
+										<div class="date-line">
+											<span class="date-icon" set:html={githubIcon} />
+											<span>Last commit <FormattedDate date={lastCommitDate} /></span>
+										</div>
 									)
 								}
 							</div>
