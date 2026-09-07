@@ -1,4 +1,4 @@
-# julianZ99 personal page
+# Personal page
 
 My personal github site: a terminal-styled blog where each entry is a **post**. A post
 can be a write-up, a note, or a project. The layout adapts to whatever fields it
